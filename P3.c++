@@ -30,10 +30,10 @@ void test1() {
 	assert(b.speak() == "roar");
 	assert(b.size() == 50);
 	assert(b.name() == "bert");
-	Cat c("Sumpreme ruler of all life");
+	Cat c("Supreme ruler of all life");
 	assert(c.speak() == "Bow before me worthless human");
 	assert(c.size() == 5);
-	assert(c.name() == "Sumpreme ruler of all life");
+	assert(c.name() == "Supreme ruler of all life");
 #endif
 }
 
@@ -73,9 +73,9 @@ void test4() {
 	Animal *a = new Cat("Sumpreme ruler of all life");
 	Animal *b = a->clone();
 	assert(a != b);
-	assert(*reinterpret_cast<Cat*>(a) == *reinterpret_cast<Cat*>(b));
-	Cat c("soon to be ruler");
-	assert(*reinterpret_cast<Cat*>(a) != c);
+	assert(*a == b);
+	Animal *c = new Cat("Soon to be ruler");
+	assert(*a != *c);
 	delete a;
 	delete b;
 #endif
