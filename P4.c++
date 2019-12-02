@@ -15,10 +15,9 @@
 //#define TEST3
 //#define TEST4
 
-
 void test1() {
 #ifdef TEST1
-	unique_handle<int> y = new int;
+	unique_handle<int> y(new int);
 	*y = 0;
 	assert(*y == 0);
 #endif
@@ -30,7 +29,7 @@ void test2() {
 	y = new int;
 	*y = 3;
 	assert(*y == 3);
-	unique_handle<int> z = new int;
+	unique_handle<int> z(new int);
 	*z = 3;
 	assert(z != y);
 	assert(*z == *y);
@@ -39,7 +38,7 @@ void test2() {
 
 void test3() {
 #ifdef TEST3
-	unique_handle<int> y = new int;
+	unique_handle<int> y(new int);
 	*y = 3;
 	unique_handle<int> z = y;
 	assert(z != y);
@@ -49,7 +48,7 @@ void test3() {
 
 void test4() {
 #ifdef TEST4
-	unique_handle<int> y = new int;
+	unique_handle<int> y(new int);
 	*y = 3;
 	int *p = &*y;
 	unique_handle<int> z = std::move(y);

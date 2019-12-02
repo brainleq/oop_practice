@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <string>
 /*
  * You must implement the following class hierarchy
  * Animal
@@ -47,7 +48,7 @@ void test2() {
 	a = new Bear("bert");
 	assert(a->speak() == "roar");
 	assert(a->size() == 50);
-	assert(a->name == "bert");
+	assert(a->name() == "bert");
 	delete a;
 #endif
 }
@@ -73,7 +74,7 @@ void test4() {
 	Animal *a = new Cat("Sumpreme ruler of all life");
 	Animal *b = a->clone();
 	assert(a != b);
-	assert(*a == b);
+	assert(*a == *b);
 	Animal *c = new Cat("Soon to be ruler");
 	assert(*a != *c);
 	delete a;

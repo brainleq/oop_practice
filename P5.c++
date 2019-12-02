@@ -20,6 +20,7 @@
 //#define TEST6
 
 
+
 void test1() {
 #ifdef TEST1
 	shared_handle<int> y;
@@ -66,9 +67,9 @@ void test5() {
 	int *p = &*y;
 	y = new int;
 	*y = 2;
-	assert(z == p);
+	assert(&*z == p);
 	assert(*z == *p);
-	assert(y != p);
+	assert(&*y != p);
 	assert(*y != *p);
 	assert(*p == 3);
 #endif
