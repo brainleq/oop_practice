@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <algorithm>
 /*
  * You must implement the stl array class
  * You may not use any STL containers
@@ -12,6 +13,7 @@
 //#define TEST2
 //#define TEST3
 //#define TEST4
+using namespace std;
 
 
 void test1() {
@@ -39,7 +41,7 @@ void test3() {
 	assert(a == b);
 	Array<int, 5> c = {2,3,4,5};
 	assert(b != c);
-	assert({1,2,3,4,5} == b);
+	assert(std::initializer_list<int>({1,2,3,4,5}) == b);
 #endif
 }
 
