@@ -9,12 +9,43 @@
  * test3 - 10 points
  * test4 - 10 points
  */
-//#define TEST1
-//#define TEST2
-//#define TEST3
-//#define TEST4
+#define TEST1
+#define TEST2
+#define TEST3
+#define TEST4
 using namespace std;
+using rel_ops::operator!=;
+template <typename T, int size>
+class Array {
+	friend bool operator == (const Array& lhs, const Array& rhs) {
+		return equal(lhs.begin(), lhs.end(), rhs.begin());
+	}
 
+	private:
+		T* _b = nullptr;
+		T* _e = nullptr;
+	
+	public:
+		Array () = default;
+
+		Array (initializer_list<T> rhs) {
+			_b = new T[size];
+			_e = _b + size;
+			copy(rhs.begin(), rhs.end(), _b);
+		}
+
+		T* begin () const {
+			return _b;
+		}
+
+		T* end () const {
+			return _e;
+		}
+
+		T& operator [] (int i) const {
+			return *(_b + i);
+		}
+};
 
 void test1() {
 #ifdef TEST1

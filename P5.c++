@@ -12,12 +12,54 @@
  * test5 - 10 points
  * test6 - 10 points
  */
-//#define TEST1
-//#define TEST2
-//#define TEST3
-//#define TEST4
-//#define TEST5
-//#define TEST6
+#define TEST1
+#define TEST2
+#define TEST3
+#define TEST4
+#define TEST5
+#define TEST6
+
+using namespace std;
+template <typename T>
+class shared_handle {
+	friend bool operator == (const shared_handle& lhs, const shared_handle& rhs) {
+		if(lhs._p == nullptr && rhs._p == nullptr) return true;
+		if(lhs._p == nullptr || rhs._p == nullptr) return false;
+		return lhs._p == rhs._p;
+	}
+
+	friend bool operator != (const shared_handle& lhs, const shared_handle& rhs) {
+		if(lhs._p == nullptr && rhs._p == nullptr) return true;
+		if(lhs._p == nullptr || rhs._p == nullptr) return false;
+		return lhs._p != rhs._p;
+	}
+
+	private:
+		T* _p = nullptr;
+
+	public:
+		shared_handle () = default;
+
+		shared_handle (T* p) : _p(p) {}
+
+		shared_handle (shared_handle&& e) {
+			_p = e._p;
+			e._p = nullptr;
+		}
+
+		shared_handle (const shared_handle& e) {
+			_p = e._p;
+		}
+
+		shared_handle& operator = (const shared_handle& rhs) {
+			_p = rhs._p;
+			return *this;
+		}
+
+		T& operator * () {
+			return *_p;
+		}
+};
 
 
 

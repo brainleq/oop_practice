@@ -3,6 +3,7 @@
 #include <vector>
 #include <deque>
 #include <string>
+#include <utility>
 /*
  * You must implement the following class hierarchy
  * Animal
@@ -15,11 +16,105 @@
  * test3 - 10 points
  * test4 - 10 points
  */
-//#define TEST1
-//#define TEST2
-//#define TEST3
-//#define TEST4
+#define TEST1
+#define TEST2
+#define TEST3
+#define TEST4
 
+using namespace std;
+using rel_ops::operator!=;
+class Animal {
+	friend bool operator == (const Animal &lhs, const Animal& rhs) {
+		return lhs._name == rhs._name;
+	}
+
+	protected:
+		string _name;
+
+	public:
+		Animal (string n) : _name(n) {}
+
+		virtual string speak () = 0;
+		virtual int size () = 0;
+		virtual string name () = 0;
+		virtual Animal* clone () = 0;
+};
+
+class Elephant : public Animal {	
+	private:
+		int _size = 100;
+		string _voice = "trumpet";
+
+	public:
+		Elephant (string n) : Animal(n) {}
+
+		string speak () {
+			return _voice;
+		}
+
+		int size() {
+			return _size;
+		}
+
+		string name () {
+			return _name;
+		}
+
+		Elephant* clone () {
+			return new Elephant(this->_name);
+		}
+};
+
+class Bear : public Animal {
+	private:
+		int _size = 50;
+		string _voice = "roar";
+
+	public:
+		Bear (string n) : Animal(n) {}
+
+		string speak () {
+			return _voice;
+		}
+
+		int size() {
+			return _size;
+		}
+
+		string name () {
+			return _name;
+		}
+
+		Bear* clone () {
+			return new Bear(this->_name);
+		}
+		
+};
+
+class Cat : public Animal {
+	private:
+		int _size = 5;
+		string _voice = "Bow before me worthless human";
+
+	public:
+		Cat (string n) : Animal(n) {}
+
+		string speak () {
+			return _voice;
+		}
+
+		int size() {
+			return _size;
+		}
+
+		string name () {
+			return _name;
+		}
+
+		Cat* clone () {
+			return new Cat(this->_name);
+		}
+};
 
 void test1() {
 #ifdef TEST1
